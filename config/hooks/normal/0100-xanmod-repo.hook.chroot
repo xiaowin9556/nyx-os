@@ -1,15 +1,9 @@
 #!/bin/sh
 set -ex
 
-apt-get install -y --no-install-recommends curl gnupg ca-certificates
+apt-get install -y --no-install-recommends curl gnupg ca-certificates dirmngr
 
-mkdir -p /etc/apt/keyrings
-curl -4 -fsSL -A "Mozilla/5.0" --retry 5 --retry-delay 3 -o /tmp/xanmod.key https://dl.xanmod.org/archive.key
-
-gpg --dearmor -o /etc/apt/keyrings/xanmod-archive-keyring.gpg /tmp/xanmod.key
-
-echo "deb [signed-by=/etc/apt/keyrings/xanmod-archive-keyring.gpg] http://deb.xanmod.org releases main" \
-    > /etc/apt/sources.list.d/xanmod-release.list
+curl -4 -fsSL 'https://liquorix.net/add-liquorix-repo.sh' | bash
 
 apt-get update
-apt-get install -y --no-install-recommends linux-xanmod-x64v3
+apt-get install -y --no-install-recommends linux-image-liquorix-amd64 linux-headers-liquorix-amd64
