@@ -1,14 +1,9 @@
 #!/bin/sh
-set -e
+set -ex
 
 mkdir -p /etc/apt/keyrings
 wget -qO /tmp/xanmod.key https://dl.xanmod.org/archive.key
-
-if ! gpg --dearmor -o /etc/apt/keyrings/xanmod-archive-keyring.gpg /tmp/xanmod.key; then
-    echo "ERRO: chave do XanMod invalida, conteudo baixado:"
-    cat /tmp/xanmod.key
-    exit 1
-fi
+gpg --dearmor -o /etc/apt/keyrings/xanmod-archive-keyring.gpg /tmp/xanmod.key
 
 echo "deb [signed-by=/etc/apt/keyrings/xanmod-archive-keyring.gpg] http://deb.xanmod.org releases main" \
     > /etc/apt/sources.list.d/xanmod-release.list
