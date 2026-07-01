@@ -1,6 +1,5 @@
 task-kde-desktop
 sddm
-plasma-workspace-wayland
 kde-config-sddm
 konsole
 dolphin
