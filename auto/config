@@ -9,7 +9,7 @@ lb config noauto \
     --iso-application "NyxOS" \
     --iso-volume "NYXOS" \
     --iso-publisher "NyxOS Project" \
-    --bootappend-live "boot=live components username=nyxos hostname=nyxos" \
+    --bootappend-live "boot=live components username=nyxos hostname=nyxos user-fullname="NyxOS Live User" user-fullname="NyxOS Live User"" \
     --debian-installer none \
     --apt-recommends true \
     --mirror-bootstrap "http://deb.debian.org/debian/" \
