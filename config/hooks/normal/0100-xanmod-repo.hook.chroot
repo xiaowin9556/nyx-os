@@ -4,7 +4,7 @@ set -ex
 apt-get install -y --no-install-recommends curl gnupg ca-certificates
 
 mkdir -p /etc/apt/keyrings
-curl -4 -fsSL --retry 5 --retry-delay 3 -o /tmp/xanmod.key https://dl.xanmod.org/archive.key
+curl -4 -fsSL -A "Mozilla/5.0" --retry 5 --retry-delay 3 -o /tmp/xanmod.key https://dl.xanmod.org/archive.key
 
 gpg --dearmor -o /etc/apt/keyrings/xanmod-archive-keyring.gpg /tmp/xanmod.key
 
