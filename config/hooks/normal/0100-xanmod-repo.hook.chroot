@@ -1,18 +1,17 @@
 #!/bin/sh
 set -e
 
-lb config noauto \
-    --architectures amd64 \
-    --distribution trixie \
-    --archive-areas "main contrib non-free non-free-firmware" \
-    --binary-images iso-hybrid \
-    --iso-application "NyxOS" \
-    --iso-volume "NYXOS" \
-    --iso-publisher "NyxOS Project" \
-    --bootappend-live "boot=live components username=nyxos hostname=nyxos" \
-    --debian-installer none \
-    --apt-recommends true \
-    --mirror-bootstrap "http://deb.debian.org/debian/" \
-    --mirror-chroot "http://deb.debian.org/debian/" \
-    --mirror-binary "http://deb.debian.org/debian/" \
-    "${@}"
+mkdir -p /etc/apt/keyrings
+wget -qO /tmp/xanmod.key https://dl.xanmod.org/archive.key
+
+if ! gpg --dearmor -o /etc/apt/keyrings/xanmod-archive-keyring.gpg /tmp/xanmod.key; then
+    echo "ERRO: chave do XanMod invalida, conteudo baixado:"
+    cat /tmp/xanmod.key
+    exit 1
+fi
+
+echo "deb [signed-by=/etc/apt/keyrings/xanmod-archive-keyring.gpg] http://deb.xanmod.org releases main" \
+    > /etc/apt/sources.list.d/xanmod-release.list
+
+apt-get update
+apt-get install -y --no-install-recommends linux-xanmod-x64v3
