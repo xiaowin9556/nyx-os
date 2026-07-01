@@ -7,6 +7,7 @@ NAME="NyxOS"
 VERSION_ID="1.0"
 VERSION="1.0"
 VERSION_CODENAME=trixie
+GRUB_DISTRIBUTOR_OVERRIDE=NyxOS
 ID=nyxos
 ID_LIKE=debian
 HOME_URL="https://github.com/xiaowin9556/nyx-os/"
@@ -16,3 +17,19 @@ OSREL
 
 cp /etc/os-release /usr/lib/os-release
 
+
+for f in /usr/share/applications/calamares.desktop /etc/skel/Desktop/*.desktop /usr/share/applications/*calamares*.desktop; do
+    [ -f "$f" ] && sed -i 's/Debian/NyxOS/g; s/Install Debian/Install NyxOS/g' "$f"
+done
+
+# Copiar assets do branding debian pro nyxos (placeholder, trocar depois por logo próprio)
+cp -r /usr/share/calamares/branding/debian/* /etc/calamares/branding/nyxos/ 2>/dev/null || true
+cp /etc/calamares/branding/nyxos/../nyxos/branding.desc /etc/calamares/branding/nyxos/branding.desc 2>/dev/null || true
+sed -i 's/branding: debian/branding: nyxos/' /etc/calamares/settings.conf
+
+for f in logo.png welcome.png show.qml; do
+    [ -f /usr/share/calamares/branding/debian/$f ] && cp /usr/share/calamares/branding/debian/$f /etc/calamares/branding/nyxos/$f
+done
+sed -i 's/branding: debian/branding: nyxos/' /etc/calamares/settings.conf
+
+echo 'GRUB_DISTRIBUTOR="NyxOS"' >> /etc/default/grub
