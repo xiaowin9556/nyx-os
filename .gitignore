@@ -1,0 +1,10 @@
+.build/
+cache/
+chroot/
+config/binary
+config/bootstrap
+config/chroot
+config/common
+config/source
+*.iso
+*.tar.gz
