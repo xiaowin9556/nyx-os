@@ -16,4 +16,3 @@ OSREL
 
 cp /etc/os-release /usr/lib/os-release
 
-echo "nyxos:nyxos" | chpasswd
