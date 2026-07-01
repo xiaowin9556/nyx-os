@@ -1,0 +1,50 @@
+name: Build NyxOS ISO
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: debian:trixie
+      options: --privileged
+
+    steps:
+      - name: Instalar dependências básicas
+        run: |
+          apt-get update
+          apt-get install -y git sudo
+
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Instalar live-build e ferramentas
+        run: |
+          apt-get install -y live-build live-config live-boot \
+            debootstrap squashfs-tools xorriso isolinux syslinux-common \
+            dosfstools mtools
+
+      - name: Limpar builds anteriores
+        run: lb clean --purge || true
+
+      - name: Configurar live-build
+        run: lb config
+
+      - name: Buildar ISO
+        run: lb build
+
+      - name: Renomear ISO
+        run: |
+          mkdir -p out
+          ISO=$(find . -maxdepth 1 -name "*.iso" | head -n1)
+          cp "$ISO" out/nyxos-$(date +%Y%m%d)-amd64.iso
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: nyxos-iso
+          path: out/*.iso
+          retention-days: 90

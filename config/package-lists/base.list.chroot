@@ -1,0 +1,6 @@
+sudo
+network-manager
+firmware-linux
+firmware-linux-nonfree
+firmware-misc-nonfree
+fastfetch

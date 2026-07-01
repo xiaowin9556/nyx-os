@@ -1,0 +1,13 @@
+#!/bin/sh
+set -e
+
+# --- XanMod kernel repo ---
+mkdir -p /etc/apt/keyrings
+wget -qO - https://dl.xanmod.org/archive.key | gpg --dearmor -o /etc/apt/keyrings/xanmod-archive-keyring.gpg
+echo "deb [signed-by=/etc/apt/keyrings/xanmod-archive-keyring.gpg] http://deb.xanmod.org releases main" \
+    > /etc/apt/sources.list.d/xanmod-release.list
+
+apt-get update
+apt-get install -y --no-install-recommends linux-xanmod-x64v3
+
+# --- Calamares (trixie já tem no repo main, instala junto com os pacotes normais) ---
