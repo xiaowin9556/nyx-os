@@ -1,0 +1,29 @@
+---
+componentName: nyxos
+
+welcomeStyleCalamares: true
+welcomeExpandingLogo: true
+
+strings:
+    productName:         "NyxOS"
+    shortProductName:    "NyxOS"
+    version:              "1.0"
+    shortVersion:         "1.0"
+    versionedName:        "NyxOS 1.0"
+    shortVersionedName:   "NyxOS 1.0"
+    bootloaderEntryName:  "NyxOS"
+    productUrl:           "https://github.com/xiaowin9556/nyx-os/"
+    supportUrl:           "https://github.com/xiaowin9556/nyx-os/issues"
+    releaseNotesUrl:      "https://github.com/xiaowin9556/nyx-os/releases"
+
+images:
+    productLogo:         "logo.png"
+    productIcon:          "logo.png"
+    productWelcome:       "welcome.png"
+
+slideshow: "show.qml"
+
+style:
+   sidebarBackground:    "#1d2023"
+   sidebarText:          "#ffffff"
+   sidebarTextSelect:    "#3daee9"
