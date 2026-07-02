@@ -21,7 +21,6 @@ images:
     productIcon:          "logo.png"
     productWelcome:       "welcome.png"
 
-slideshow: "show.qml"
 
 style:
    sidebarBackground:    "#1d2023"
