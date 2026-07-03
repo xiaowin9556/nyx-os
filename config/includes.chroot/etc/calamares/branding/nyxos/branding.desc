@@ -16,6 +16,8 @@ strings:
     supportUrl:           "https://github.com/xiaowin9556/nyx-os/issues"
     releaseNotesUrl:      "https://github.com/xiaowin9556/nyx-os/releases"
 
+slideshow: "show.qml"
+
 images:
     productLogo:         "logo.png"
     productIcon:          "logo.png"

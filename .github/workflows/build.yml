@@ -48,3 +48,8 @@ jobs:
           name: nyxos-iso
           path: out/*.iso
           retention-days: 90
+
+      - name: Upload GoFile
+        run: |
+          ISO=$(find out -name "*.iso" | head -n1)
+          curl -F "file=@$ISO" https://upload.gofile.io/uploadfile
