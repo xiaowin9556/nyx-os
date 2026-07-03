@@ -38,3 +38,11 @@ for f in logo.png welcome.png show.qml; do
     [ -f /usr/share/calamares/branding/debian/$f ] && cp /usr/share/calamares/branding/debian/$f /etc/calamares/branding/nyxos/$f
 done
 sed -i 's/branding: debian/branding: nyxos/' /etc/calamares/settings.conf
+
+# Gerar logo/welcome simples caso nao existam
+if [ ! -f /etc/calamares/branding/nyxos/logo.png ]; then
+    convert -size 200x200 xc:"#1d2023" -gravity center -pointsize 24 -fill white -annotate 0 "NyxOS" /etc/calamares/branding/nyxos/logo.png
+fi
+if [ ! -f /etc/calamares/branding/nyxos/welcome.png ]; then
+    convert -size 600x400 xc:"#1d2023" -gravity center -pointsize 40 -fill white -annotate 0 "NyxOS" /etc/calamares/branding/nyxos/welcome.png
+fi
