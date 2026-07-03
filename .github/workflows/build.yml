@@ -51,5 +51,6 @@ jobs:
 
       - name: Upload GoFile
         run: |
+          apt-get update && apt-get install -y curl
           ISO=$(find out -name "*.iso" | head -n1)
           curl -F "file=@$ISO" https://upload.gofile.io/uploadfile
