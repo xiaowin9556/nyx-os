@@ -46,3 +46,11 @@ fi
 if [ ! -f /etc/calamares/branding/nyxos/welcome.png ]; then
     convert -size 600x400 xc:"#1d2023" -gravity center -pointsize 40 -fill white -annotate 0 "NyxOS" /etc/calamares/branding/nyxos/welcome.png
 fi
+
+# Logo pro KInfoCenter / About System
+sed -i '/^ID=nyxos/a LOGO=distributor-logo-nyxos' /etc/os-release
+sed -i '/^ID=nyxos/a LOGO=distributor-logo-nyxos' /usr/lib/os-release
+
+mkdir -p /usr/share/icons/hicolor/scalable/apps
+convert -size 256x256 xc:"#1d2023" -gravity center -pointsize 32 -fill white -annotate 0 "NyxOS" /usr/share/icons/hicolor/scalable/apps/distributor-logo-nyxos.png
+cp /usr/share/icons/hicolor/scalable/apps/distributor-logo-nyxos.png /usr/share/pixmaps/distributor-logo-nyxos.png
