@@ -1,9 +1,8 @@
 #!/bin/sh
-set -ex
-
-apt-get install -y --no-install-recommends curl gnupg ca-certificates dirmngr
-
-curl -4 -fsSL 'https://liquorix.net/add-liquorix-repo.sh' | bash
-
+set -e
+mkdir -p /etc/apt/keyrings
+curl -fsSL https://liquorix.net/liquorix-keyring.gpg | gpg --batch --yes --dearmor -o /etc/apt/keyrings/liquorix-keyring.gpg
+codename=$(grep VERSION_CODENAME /etc/os-release | cut -d= -f2)
+echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/liquorix-keyring.gpg] https://liquorix.net/debian $codename main" > /etc/apt/sources.list.d/liquorix.list
 apt-get update
-apt-get install -y --no-install-recommends linux-image-liquorix-amd64 linux-headers-liquorix-amd64
+apt-get install -y linux-image-liquorix-amd64 linux-headers-liquorix-amd64
